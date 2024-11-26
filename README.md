@@ -58,3 +58,12 @@ This is a backend API for managing a **Bookstore Inventory Management System**. 
    ```bash
    git clone https://github.com/yourusername/bookstore-backend.git
    cd bookstore-backend
+   npm install
+   npm run start:dev
+
+🤝 Contributing
+Feel free to fork this repository and submit pull requests if you would like to contribute to the project!
+
+
+This version provides a succinct explanation of what the project is about, a brief description of the API endpoints, and basic setup instructions.
+
