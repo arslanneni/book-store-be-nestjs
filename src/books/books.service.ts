@@ -4,16 +4,22 @@ import { Book } from './entities/book.entity';
 import { Not, Repository } from 'typeorm';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
+import { Author } from 'src/authors/entities/author.entity';
 
 @Injectable()
 export class BooksService {
   constructor(
     @InjectRepository(Book)
     private readonly bookRepo: Repository<Book>,
+    @InjectRepository(Book)
+    private readonly authorRepo: Repository<Author>,
   ) {}
   async getAllBooks() {
     try {
-      const result = await this.bookRepo.find({});
+      const result = await this.bookRepo
+        .createQueryBuilder('book')
+        .leftJoinAndSelect('book.authors', 'author')
+        .getRawMany();
       if (result.length > 0) {
         return {
           status: 'SUCCESS',

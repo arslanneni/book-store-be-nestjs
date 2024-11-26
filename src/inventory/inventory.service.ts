@@ -184,7 +184,7 @@ export class InventoryService {
         };
       }
 
-      await this.inventoryRepo.update(id, { status: 'DELETED' }); // Mark stock as zero to indicate deletion.
+      await this.inventoryRepo.update(id, { status: 'DELETED' });
       return {
         status: 'SUCCESS',
         httpcode: HttpStatus.OK,
