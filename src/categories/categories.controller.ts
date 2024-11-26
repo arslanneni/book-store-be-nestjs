@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
+
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -7,28 +17,36 @@ import { UpdateCategoryDto } from './dto/update-category.dto';
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
-  @Post()
-  create(@Body() createCategoryDto: CreateCategoryDto) {
-    return this.categoriesService.create(createCategoryDto);
+  @Get('getAllCategories')
+  getAllCategories() {
+    return this.categoriesService.getAllCategories();
   }
 
-  @Get()
-  findAll() {
-    return this.categoriesService.findAll();
+  @Get('getAllActiveCategories')
+  getAllActiveCategories() {
+    return this.categoriesService.getAllActiveCategories();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.categoriesService.findOne(+id);
+  @Get('getCategoryByID/:id')
+  getCategoryByID(@Param('id') id: number) {
+    return this.categoriesService.getCategoryByID(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCategoryDto: UpdateCategoryDto) {
-    return this.categoriesService.update(+id, updateCategoryDto);
+  @Post('createCategory')
+  async createCategory(@Body() createCategoryDto: CreateCategoryDto) {
+    return this.categoriesService.createCategory(createCategoryDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.categoriesService.remove(+id);
+  @Put('updateCategoryByID/:id')
+  async updateCategoryByID(
+    @Param('id') id: number,
+    @Body() updateCategoryDto: UpdateCategoryDto,
+  ) {
+    return this.categoriesService.updateCategoryByID(id, updateCategoryDto);
+  }
+
+  @Put('deleteCategoryByID/:id')
+  async deleteCategoryByID(@Param('id') id: number) {
+    return this.categoriesService.deleteCategoryByID(id);
   }
 }
